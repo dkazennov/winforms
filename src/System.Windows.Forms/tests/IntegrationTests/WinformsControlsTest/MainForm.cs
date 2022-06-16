@@ -164,6 +164,10 @@ namespace WinformsControlsTest
                 new InitInfo("MessageBox", (obj, e) => new MessageBoxes().Show(this))
             },
             {
+                MainFormControlsTabOrder.MemoryLeaksButton,
+                new InitInfo("MemoryLeaksForm", (obj, e) => new StartForm().Show(this))
+            },
+            {
                 MainFormControlsTabOrder.ToolStripsButton,
                 new InitInfo("ToolStrips", (obj, e) => new ToolStripTests().Show(this))
             },
