@@ -253,8 +253,7 @@ namespace System.Windows.Forms
                 }
 
                 InnerList.Clear();
-
-                OwnerComboBoxAccessibleObject?.ItemAccessibleObjects.Clear();
+                _owner.ClearListItemAccessibleObjects();
 
                 _owner._selectedIndex = -1;
                 if (_owner.AutoCompleteSource == AutoCompleteSource.ListItems)
@@ -385,7 +384,7 @@ namespace System.Windows.Forms
                     _owner.NativeRemoveAt(index);
                 }
 
-                OwnerComboBoxAccessibleObject?.ItemAccessibleObjects.Remove(InnerList[index]);
+                _owner.RemoveListItemAccessibleObjectAt(index);
                 InnerList.RemoveAt(index);
 
                 if (!_owner.IsHandleCreated)

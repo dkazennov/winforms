@@ -922,6 +922,14 @@ namespace System.Windows.Forms
             }
         }
 
+        private void ClearListItemAccessibleObjects()
+        {
+            if (IsAccessibilityObjectCreated && AccessibilityObject is ComboBoxAccessibleObject accessibilityObject)
+            {
+                accessibilityObject.ResetListItemAccessibleObjects();
+            }
+        }
+
         // ComboBox.PreferredHeight returns incorrect values
         // This is translated from windows implementation.  Since we cannot control the size
         // of the combo box, we need to use the same calculation they do.
@@ -3249,8 +3257,22 @@ namespace System.Windows.Forms
 
             if (IsAccessibilityObjectCreated)
             {
-                var uiaProvider = AccessibilityObject as ComboBoxAccessibleObject;
-                uiaProvider?.ResetListItemAccessibleObjects();
+                if (OsVersion.IsWindows8OrGreater)
+                {
+                    UiaCore.UiaDisconnectProvider(_childListAccessibleObject);
+                    UiaCore.UiaDisconnectProvider(_childEditAccessibleObject);
+                    UiaCore.UiaDisconnectProvider(_childTextAccessibleObject);
+                }
+
+                ClearListItemAccessibleObjects();
+            }
+        }
+
+        private void RemoveListItemAccessibleObjectAt(int index)
+        {
+            if (IsAccessibilityObjectCreated && AccessibilityObject is ComboBoxAccessibleObject accessibilityObject)
+            {
+                accessibilityObject.RemoveListItemAccessibleObjectAt(index);
             }
         }
 

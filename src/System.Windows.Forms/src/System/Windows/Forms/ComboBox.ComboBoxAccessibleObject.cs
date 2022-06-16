@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Diagnostics;
 using static System.Windows.Forms.ComboBox.ObjectCollection;
 using static Interop;
 
@@ -214,8 +215,40 @@ namespace System.Windows.Forms
                 }
             }
 
+            internal void RemoveListItemAccessibleObjectAt(int index)
+            {
+                IReadOnlyList<Entry> entries = _owningComboBox.Items.InnerList;
+                if (index >= entries.Count)
+                {
+                    return;
+                }
+
+                Entry item = entries[index];
+                if (item is null || !ItemAccessibleObjects.ContainsKey(item))
+                {
+                    return;
+                }
+
+                if (OsVersion.IsWindows8OrGreater)
+                {
+                    HRESULT result = UiaCore.UiaDisconnectProvider(ItemAccessibleObjects[item]);
+                    Debug.Assert(result == HRESULT.S_OK);
+                }
+
+                ItemAccessibleObjects.Remove(item);
+            }
+
             internal void ResetListItemAccessibleObjects()
             {
+                if (OsVersion.IsWindows8OrGreater)
+                {
+                    foreach (ComboBoxItemAccessibleObject itemAccessibleObject in ItemAccessibleObjects.Values)
+                    {
+                        HRESULT result = UiaCore.UiaDisconnectProvider(itemAccessibleObject);
+                        Debug.Assert(result == HRESULT.S_OK);
+                    }
+                }
+
                 ItemAccessibleObjects.Clear();
             }
 
