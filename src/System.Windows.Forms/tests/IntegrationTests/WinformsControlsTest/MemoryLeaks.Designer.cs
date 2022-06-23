@@ -33,11 +33,13 @@ namespace WinformsControlsTest
         private void InitializeComponent()
         {
             this.showFormButton = new System.Windows.Forms.Button();
+            this.showFormCheckBox = new System.Windows.Forms.CheckBox();
             this.collectButton = new System.Windows.Forms.Button();
+            this.collectCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // showFormButton
-            // 
+            //
             this.showFormButton.AccessibleName = "ShowForm";
             this.showFormButton.Location = new System.Drawing.Point(44, 30);
             this.showFormButton.Name = "showFormButton";
@@ -46,6 +48,18 @@ namespace WinformsControlsTest
             this.showFormButton.Text = "Show Form";
             this.showFormButton.UseVisualStyleBackColor = true;
             this.showFormButton.Click += new System.EventHandler(this.ShowFormButton_Click);
+
+            /*
+            this.showFormCheckBox.AccessibleName = "ShowForm";
+            this.showFormCheckBox.Location = new System.Drawing.Point(44, 30);
+            this.showFormCheckBox.Name = "showFormButton";
+            this.showFormCheckBox.Size = new System.Drawing.Size(99, 23);
+            this.showFormCheckBox.TabIndex = 0;
+            this.showFormCheckBox.Text = "Show Form";
+            this.showFormCheckBox.UseVisualStyleBackColor = true;
+            this.showFormCheckBox.Click += new System.EventHandler(this.ShowFormButton_Click);
+            */
+
             // 
             // collectButton
             // 
@@ -57,7 +71,18 @@ namespace WinformsControlsTest
             this.collectButton.Text = "GC.Collect";
             this.collectButton.UseVisualStyleBackColor = true;
             this.collectButton.Click += new System.EventHandler(this.CollectButton_Click);
-            
+
+            /*
+            this.collectCheckBox.AccessibleName = "GCCollect";
+            this.collectCheckBox.Location = new System.Drawing.Point(44, 80);
+            this.collectCheckBox.Name = "collectButton";
+            this.collectCheckBox.Size = new System.Drawing.Size(75, 23);
+            this.collectCheckBox.TabIndex = 1;
+            this.collectCheckBox.Text = "GC.Collect";
+            this.collectCheckBox.UseVisualStyleBackColor = true;
+            this.collectCheckBox.Click += new System.EventHandler(this.CollectButton_Click);
+            */
+
             // 
             // StartForm
             // 
@@ -66,6 +91,8 @@ namespace WinformsControlsTest
             this.ClientSize = new System.Drawing.Size(240, 204);
             this.Controls.Add(this.collectButton);
             this.Controls.Add(this.showFormButton);
+            //this.Controls.Add(this.showFormCheckBox);
+            //this.Controls.Add(this.collectCheckBox);
             this.Name = "StartForm";
             this.Text = "StartForm";
             this.ResumeLayout(false);
@@ -74,6 +101,8 @@ namespace WinformsControlsTest
 
         #endregion
 
+        private System.Windows.Forms.CheckBox showFormCheckBox;
+        private System.Windows.Forms.CheckBox collectCheckBox;
         private System.Windows.Forms.Button showFormButton;
         private System.Windows.Forms.Button collectButton;
     }
@@ -106,46 +135,19 @@ namespace WinformsControlsTest
         /// </summary>
         private void InitializeComponent()
         {
-            this.propertyGrid = new System.Windows.Forms.PropertyGrid();
-            this.removeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // TestForm
             // 
-            this.propertyGrid.Location = new System.Drawing.Point(15, 15);
-            this.propertyGrid.Name = "propertyGrid";
-            this.propertyGrid.Size = new System.Drawing.Size(200, 350);
-            this.propertyGrid.TabIndex = 0;
-            // 
-            // removeButton
-            // 
-            this.removeButton.AccessibleName = "Remove item";
-            this.removeButton.Location = new System.Drawing.Point(44, 50);
-            this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(75, 23);
-            this.removeButton.TabIndex = 1;
-            this.removeButton.Text = "Remove last item";
-            this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.RemoveButton_Click);
-            // 
-            // EmptyComboForm
-            // 
-            this.AccessibleName = "testForm";
+            this.AccessibleName = "TestForm";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 401);
-            //this.Controls.Add(this.propertyGrid);
-            this.Controls.Add(this.removeButton);
-            this.Name = "EmptyComboForm";
-            this.Text = "EmptyComboForm";
+            this.Name = "TestForm";
+            this.Text = "TestForm";
             this.ResumeLayout(false);
-
         }
-
         #endregion
-
-        private System.Windows.Forms.PropertyGrid propertyGrid;
-        private System.Windows.Forms.Button removeButton;
     }
 }
 
